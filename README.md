@@ -1,6 +1,6 @@
 # k8bot
 
-A Slack bot for querying Kubernetes clusters in real time. Built in Go, it connects via Slack Socket Mode and provides both text-based ChatOps commands and an interactive Block Kit UI for browsing cluster resources and metrics.
+A Slack bot for querying Kubernetes clusters in real time. Built in Go, it connects via Slack Socket Mode and provides both text-based ChatOps commands and an interactive Block Kit UI for browsing cluster resources and metrics. This repo is mirrored from my personal lab.
 
 ## Features
 
