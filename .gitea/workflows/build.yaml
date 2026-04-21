@@ -29,7 +29,7 @@ jobs:
       - name: 🚀 Build and Push (Multi-Arch)
         uses: docker/build-push-action@v5
         with:
-          context: .
+          context: ./deploy/Dockerfile
           push: true
           platforms: linux/amd64,linux/arm64
           tags: git.mcagr.com/${{ github.repository_owner }}/k8bot:latest
