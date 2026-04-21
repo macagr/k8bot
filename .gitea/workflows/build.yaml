@@ -24,7 +24,6 @@ jobs:
         with:
           registry: git.mcagr.com 
           username: ${{ github.repository_owner }} 
-          # 🔒 Using your restricted package token
           password: ${{ secrets.REGISTRY_TOKEN }} 
 
       - name: 🚀 Build and Push (Multi-Arch)
