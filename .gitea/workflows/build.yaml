@@ -34,3 +34,5 @@ jobs:
           push: true
           platforms: linux/amd64,linux/arm64
           tags: git.mcagr.com/${{ github.repository_owner }}/k8bot:latest
+          cache-from: type=gha
+          cache-to: type=gha,mode=max
