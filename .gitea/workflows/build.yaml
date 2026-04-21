@@ -9,11 +9,6 @@ jobs:
   build:
     runs-on: ubuntu-latest 
     
-    # 🔒 THE MAGIC BULLET: Elevate the ephemeral token's permissions
-    permissions:
-      contents: read
-      packages: write 
-    
     steps:
       - name: 📥 Checkout Code
         uses: actions/checkout@v4
@@ -28,10 +23,9 @@ jobs:
         uses: docker/login-action@v3
         with:
           registry: git.mcagr.com 
-          # Note: Ensure this evaluates to 'macagr' exactly
           username: ${{ github.repository_owner }} 
-          # Back to the automatically generated, temporary token!
-          password: ${{ secrets.GITHUB_TOKEN }} 
+          # 🔒 Using your restricted package token
+          password: ${{ secrets.REGISTRY_TOKEN }} 
 
       - name: 🚀 Build and Push (Multi-Arch)
         uses: docker/build-push-action@v5
