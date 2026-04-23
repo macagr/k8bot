@@ -1,0 +1,6 @@
+apiVersion: v2 
+name: k8bot
+description: A Helm chart for Kubernetes slack bot
+type: application
+version: 0.1.0
+appVersion: 1.0.0

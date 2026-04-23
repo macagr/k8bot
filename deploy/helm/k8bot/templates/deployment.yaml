@@ -1,0 +1,34 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ include "k8bot.fullname" . }}
+  labels:
+    {{- include "k8bot.labels" . | nindent 4 }}
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      {{- include "k8bot.selectorLabels" . | nindent 6 }}
+  template:
+    metadata:
+      labels:
+        {{- include "k8bot.selectorLabels" . | nindent 8 }}
+    spec:
+      serviceAccountName: {{ include "k8bot.fullname" . }}
+      
+      # Assumes a secret named 'gitea-pull-secret' exists in the target namespace
+      imagePullSecrets:
+        - name: gitea-pull-secret
+        
+      containers:
+        - name: {{ .Chart.Name }}
+          image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
+          imagePullPolicy: {{ .Values.image.pullPolicy }}
+          
+          # This dynamically uses the secret name provided by ArgoCD
+          envFrom:
+            - secretRef:
+                name: {{ .Values.existingSecret | default (include "k8bot.fullname" .) }}
+                
+          resources:
+            {{- toYaml .Values.resources | nindent 12 }}
