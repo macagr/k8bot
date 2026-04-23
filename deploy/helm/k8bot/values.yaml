@@ -1,5 +1,5 @@
 image:
-  repository: git.mcagr.com/mcagr/k8bot
+  repository:  git.mcagr.com/macagr/k8bot
   tag: "latest"
   pullPolicy: Always
 
